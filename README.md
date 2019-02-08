@@ -4,7 +4,15 @@ Repository for producing random sampling from unit balls in hyperbolic, Euclidia
 
 The code is written in the Julia language using Julia v.0.6.4. 
 
-`*.jl` files contain necessary functions (see descriptions below), and the notebooks illustrate the use and show the plots comparing the three geometries.
+`*.jl` files contain necessary functions, and the notebooks illustrate the use and show the plots comparing the three geometries.
+
+`GeometricSampling.jl` -- functions for sampling and distance 
+
+`AverageBettis.jl` -- functions for computing and plotting average Betti curves
+
+`sampling.ipynb` -- notebook illustrating sampling
+
+`betti_curves.ipynb` -- notebook containing average Betti curves
 
 ## Installation
 
@@ -14,7 +22,7 @@ julia> include("[filename].jl")
 ```
 
 ## Sampling (`GeometricSampling.jl`)
-`hyperbolic.jl` contains functions for sampling from different geometries and coomputing distances. Only sampling within a ball of radius 1 and in curvature 0, +1, -1 are implemented as of 02/08/2019.
+`GeometricSampling.jl` contains functions for sampling from different geometries and coomputing distances. Only sampling within a ball of radius 1 and in curvature 0, +1, -1 are implemented as of 02/08/2019.
 
 ### Sample ball
 ```
