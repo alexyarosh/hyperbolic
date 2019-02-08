@@ -13,7 +13,7 @@ This isn't a package (yet), so to use the functions, download the file into the 
 julia> include("[filename].jl")
 ```
 
-## Sampling (`geometric_sampling.jl`)
+## Sampling (`GeometricSampling.jl`)
 `hyperbolic.jl` contains functions for sampling from different geometries and coomputing distances. Only sampling within a ball of radius 1 and in curvature 0, +1, -1 are implemented as of 02/08/2019.
 
 ### Sample ball
@@ -63,7 +63,7 @@ to_density!(matr::Array{T,2})
 Convert a symmetric `n x n` matrix to a density matrix, i.e. replace `matr[i,j]` with the the number of entries in the upper triangle of `matr` that are less than `matr[i,j]`, divided by \binom{n}{2}. This ensures that the matrix entries are on `[0,1]` scale while preserving the Vietoris-Rips complex of the matrix.
 
 ## Betti curves
-`average_bettis.jl` contains functions for computing and plotting average Betti curves. We use Eirene to compute the Betti numbers.
+`AverageBettis.jl` contains functions for computing and plotting average Betti curves. We use Eirene to compute the Betti numbers.
 
 
 
