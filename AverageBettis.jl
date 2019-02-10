@@ -1,4 +1,4 @@
-using Plots, Eirene, Ripser
+using Plots, Eirene, Ripser, Statistics
 
 # compute the persistent betti numbers of the Vietoris-Rips complex given by the distance matrix `matr`
 # if mintime, maxtime and numofsteps are specified -- returns a `numofsteps x maxdim` array
