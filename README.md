@@ -2,7 +2,7 @@
 
 Repository for producing random sampling from unit balls in hyperbolic, Euclidian and spherical spaces, and analyzing them using tools from (CITE HERE).
 
-The code is written in the Julia language using Julia v.0.6.4. 
+The code is written in the Julia language and requires Julia v.0.7. 
 
 `*.jl` files contain necessary functions, and the notebooks illustrate the use and show the plots comparing the three geometries.
 
@@ -70,8 +70,67 @@ to_density!(matr::Array{T,2})
 ```
 Convert a symmetric `n x n` matrix to a density matrix, i.e. replace `matr[i,j]` with the the number of entries in the upper triangle of `matr` that are less than `matr[i,j]`, divided by \binom{n}{2}. This ensures that the matrix entries are on `[0,1]` scale while preserving the Vietoris-Rips complex of the matrix.
 
-## Betti curves
-`AverageBettis.jl` contains functions for computing and plotting average Betti curves. We use Eirene to compute the Betti numbers.
+## Betti curves (`AverageBettis.jl`)
+`AverageBettis.jl` contains functions for computing and plotting average Betti curves. 
+
+```
+bettis(matr::Array{Float64,2}, 
+       maxdim::Int; 
+       mintime::Float64 = -Inf,
+       maxtime::Float64 = Inf
+       numofsteps::Int = Inf
+       method::Symbol = :ripser)::Array{Float64,2}
+```       
+Compute Betti numbers of the Vietoris-Rips complex defined by the distance matrix `matr` up to dimension `maxdim`. Parameters `mintime`, `maxtime`, `numofsteps` define the filtration, where `mintime` and `maxtime` is the start and end points of the filtration, and `numofsteps` is the number of steps in the filtration. Parameter `method` determines the software to use for persistent homology (possible values `method=:ripser`  for `Ripser.jl` and `method=:eirene` for `Eirene.jl`).
+
+Returns  `numofsteps x maxdim` matrix, where `(i,j)`'th entry is the `j`th Betti number at filtration step `i`. Betti_0 is discarded.
+
+```
+average_bettis(arrs::Array{Array{Float64,2},1})::Array{Float64,2}
+```
+Assuming `arrs` is array of outputs of `bettis(..)` of same size, find average values for Betti numbers for each point in the filtration for each dimesion.
+
+```
+std_bettis(arrs::Array{Array{Float64,2},1})::Array{Float64,2}
+```
+Assuming `arrs` is array of outputs of `bettis(..)` of same size, find standard deviations for Betti numbers for each point in the filtration for each dimesion.
+
+```
+plot_averages(xvals::Array{Float64,1}, 
+              means::Array{Float64,1}, 
+              stds::Array{Float64,1}; 
+              ribbon::Bool=true, 
+              label::String = "", 
+              linestyle = :solid, 
+              color = :auto)
+              
+plot_averages!(xvals, means, stds; ribbon=true, label="", linestyle=:solid, color=:auto)
+```
+Plot average Betti curves `means` with standard deviations `stds` at filtration values given by `xvals`. Ribbon parameter determins whether to plot the error ribbon (of width=standard deviation) around the curve.
 
 
+```
+plot_averages(xvals::Array{Float64,1}, 
+              means::Array{Float64,1}, 
+              stds::Array{Float64,1}; 
+              ribbon::Bool=true, 
+              label::String = "", 
+              linestyle = :solid, 
+              color = :auto)
+              
+plot_averages!(xvals, means, stds; ribbon=true, label="", linestyle=:solid, color=:auto)
+```
+Plot average Betti curves `means` with standard deviations `stds` at filtration values given by `xvals`. Ribbon parameter determins whether to plot the error ribbon (of width=standard deviation) around the curve.
 
+```
+plot_averages(xvals::Array{Float64,1}, 
+              file::String; 
+              dim=1, 
+              ribbon=true, 
+              label="", 
+              linestyle=:solid, 
+              color=:auto)
+
+plot_averages!(xvals, file::String; dim=1, ribbon=true, label="", linestyle=:solid, color=:auto)
+```
+Plot average Betti curves in dimension `dim` at filtration values given by `xvals`, given that `file` contains _all_ the Betti numbers (e.g. it contains many outputs of `bettis`).
