@@ -1,7 +1,4 @@
-# volume of a d-sphere of radius r
-function sphere_volume(d, r=1)
-    return pi^(d/2) * r^d /gamma(d/2 + 1) 
-end
+using LinearAlgebra
 
 # integrate sinh^(n)(ax) from 0 to r
 function integrate_sinh(n; r=1.0, a=1.0)
@@ -32,7 +29,7 @@ end
 function rejection_sampling(dens::Function, maxval,numofpts=1)
     max_val = dens(maxval)
     iter = 1
-    rands = Array{Float64,1}(numofpts)
+    rands = Array{Float64,1}(undef, numofpts)
     while iter <= numofpts
         x = rand()*maxval
         val = dens(x)
@@ -156,7 +153,7 @@ function distance_matrix(pts; curvature=0.0)
 end
 
 function to_density(matr)
-    dens_matr = zeros(matr)
+    dens_matr = zeros(size(matr,1), size(matr,2))
     n = size(matr)[1]
     all_entries = sort(setdiff(unique(matr), 0.0))
     total = binomial(n,2)
