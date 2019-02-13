@@ -1,6 +1,6 @@
 # Detecting geometry via Betti curves
 
-Repository for producing random sampling from unit balls in hyperbolic, Euclidian and spherical spaces, and analyzing them using tools from (CITE HERE).
+Repository for producing random sampling from unit balls in hyperbolic, Euclidian and spherical spaces, and analyzing them using Betti curves.
 
 The code is written in the Julia language and requires Julia v.0.7. 
 
