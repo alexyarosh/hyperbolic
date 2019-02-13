@@ -13,6 +13,23 @@ The code is written in the Julia language and requires Julia v.0.7.
 `sampling.ipynb` -- notebook illustrating sampling
 
 `betti_curves.ipynb` -- notebook containing average Betti curves
+## Required packages
+
+`GeometricSampling.jl` requires the following Julia packages: `LinearAlgebra`
+ 
+`AverageBettis.jl` requires the following packages: `Plots, Eirene, Ripser, Statistics`
+
+To intall a package, open Julia command line promt and type `]`. 
+
+The prompt should change from `julia>` to `(vX.X) pkg>` where `X.X` is the installed version of Julia, indicating that you enterted the package manager. Use `add` to install packages. You can install multiple packages by listing them after `add`, separated by spaces.
+```
+(v0.7) pkg> add LinearAlgebra Plots Eirene Ripser Statistics
+```
+To update all packages, run
+```
+(v0.7) pkg> update
+```
+To exit the package manager and get back to Julia REPL, use backspace or ^C.
 
 ## Installation
 
