@@ -151,3 +151,4 @@ plot_averages(xvals::Array{Float64,1},
 plot_averages!(xvals, file::String; dim=1, ribbon=true, label="", linestyle=:solid, color=:auto)
 ```
 Plot average Betti curves in dimension `dim` at filtration values given by `xvals`, given that `file` contains _all_ the Betti numbers (e.g. it contains many outputs of `bettis`).
+
